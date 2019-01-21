@@ -1,0 +1,36 @@
+In this version of my project i have tried to fit in the code into a method driven framework and made lot of changes
+to make it conform to standards. Like earlier, the test programs have been written inside src/test/java and i have 
+created two packages inside src/main/java which are: Generic(contains code which are common to many classes) and Pag
+es(contains classes corresponding to each page created according to PageObjectModel.)
+
+Since we have three test cases, we can find out what are the elements required in each page and what are the pages 
+required. We have one POM class per webpage following the naming convention of ending with "Page" word. Each POM 
+class stores the elements specific to a particular page. The POM class contains three sections:Declaration, Initia
+lization and utilization. In the declaration section we declare the elements using @FindBy annotation. Initialisati
+on is done inside a constructor using PageFactory class. In utilization section, public methods are defined which s
+tores the actions that can be performed on elements inside the page. The principle of encapsulation is demonstrated 
+here.
+
+Since chrome key and value are constant we can define them inside an interface called as AutoConstant inside the 
+Generic package where the key and value for all platforms are defined. The methods common to all the test cases can
+be written inside an abstract class called BaseTest(inside the generic package). All test classes extend this BaseT
+est class. Thus the principles of Abstraction are demonstrated here.
+
+BaseTest class contains a @BeforeMethod annotated method called preCondition which contains code which should be
+executed before executing each test case like opening the browser, entering the URL, maximizing the window, deleting
+cookies, providing implicit wait. It also contains @AfterMethod annotated method called postCondition which contains
+code which should be executed after each test case like closing all browsers. Also, since we need to provide waits 
+in every test case, a wait method also forms part of BaseTest class. And this class is defined as abstract because 
+it is incomplete as we are in the process of completing it every time(based on the common methods that come up). 
+This demonstrates the concept of reusability of code using inheritance concept.
+
+For each manual test case we write a test class inside the src/test/java, inside testPrograms package and write the
+classname ending with "test". Inside the test class we simply call the methods we have created in this method driven
+framework from the respective page and in the end we perform the verifications. 
+
+In FlightBookingTest class, I have added display of success message if results page is displayed after submitting th
+e details. I have done the same in SignInTest class where success message is displayed if error message appears.
+
+In HotelBookingTest class originally there was no verification whether hotel list page is being displayed or not. I
+have written code to enter all the details in the booking page followed by verification point whether hotel list pag
+e is being displayed after clicking on search hotels. I made this modification to make the test case meaningful.

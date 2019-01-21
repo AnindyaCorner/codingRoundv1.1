@@ -1,0 +1,23 @@
+package Pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class HotelSearchPage {
+
+	//Declaration
+	@FindBy(className = "searchSummary")
+	private WebElement searchPageHeading;
+	
+	//Initialisation
+	public HotelSearchPage(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
+	//Utilization
+	public boolean isSearchPageDisplayed() {
+		return searchPageHeading.isDisplayed();
+	}
+	
+}
